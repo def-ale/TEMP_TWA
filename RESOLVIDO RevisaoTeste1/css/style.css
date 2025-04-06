@@ -1,0 +1,62 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    transition: all 0.4s ease;
+}
+
+body .subtitle,
+body .title {
+    color: hsl(171, 100%, 41%);
+}
+
+body.dark {
+    background-color: hsl(0, 0%, 21%);
+    color: hsl(171, 100%, 96%);
+}
+
+body.dark .subtitle,
+body.dark .title {
+    color: hsl(142, 52%, 96%);
+}
+
+.navbar-item img {
+    max-height: 4rem;
+    padding: 5px;
+}
+
+.section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    padding: .8rem;
+    border-radius: 6px;
+
+}
+
+.bd-pagination-prev {
+    float: left;
+}
+
+.bd-pagination-next {
+    float: right;
+}
+
+.image img {
+    display: block;
+    max-height: 45vh;
+    width: auto;
+    margin: auto;
+}
+
+.dark img {
+    filter: brightness(0.8);
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/bulma.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Pokémon - Bulma</title>
+</head>
+
+<body>
+    <!-- Menu -->
+    <nav class="navbar is-primary">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="#">
+                    <img src="./images/logo.png" alt="Bágdex">
+                </a>
+                <span class="navbar-burger burger" data-target="navbarMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </div>
+            <div id="navbarMenu" class="navbar-menu">
+                <div class="navbar-end">
+                    <a class="navbar-item" href="https://bagdex.com.br/">Home</a>
+                    <a class="navbar-item" href="https://bagdex.com.br/">Bágdex</a>
+                    <a class="navbar-item" href="https://bagdex.com.br/">Sobre</a>
+                    <a class="navbar-item" id="toggleNightMode">Modo Noturno</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Texto -->
+    <section class="section">
+        <div class="container">
+            <h1 class="title">Bem -vindo ao mundo da Bágex!</h1>
+            <p class="subtitle">Aprenda sobre a fauna, flora, folclore e cultura do nosso Brasil. <br> Descubra o seu Bágmon favorito.</p>
+        </div>
+    </section>
+
+    <!-- Galeria de imagens -->
+    <section class="section" id="gallery">
+        <div class="container">
+            <div class="columns is-multiline is-centered">
+                <div class="column is-one-third">
+                    <figure class="image">
+                        <img src="./images/bagmon/1.jpeg"
+                            alt="Voara">
+                    </figure>
+                </div>
+            </div>
+            <div class="buttons is-multiline is-centered">
+                <div class="column is-one-third">
+                    <a href="" class="button bd-fat-button is-primary is-dark bd-pagination-prev"
+                        id="prevButton">Anterior</a>
+                    <a href="" class="button bd-fat-button is-primary is-dark bd-pagination-next"
+                        id="nextButton">Próximo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="/js/prova.js"></script>
+</body>
+
+</html>
