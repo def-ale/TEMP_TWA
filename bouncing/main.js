@@ -6,6 +6,9 @@ const ctx = canvas.getContext("2d");
 const width = (canvas.width = window.innerWidth);
 const height = (canvas.height = window.innerHeight);
 
+const para = document.getElementById('para');
+var count = 25;
+
 // function to generate random number
 
 function random(min, max) {
@@ -54,11 +57,69 @@ Ball.prototype.constructor = Ball;
 function EvilCircle(x, y) {
   Shape.call(this, x, y, 20, 20);
   this.color = "white";
-  this.size = 10;
+  this.size = 80;
 }
+
+// Evil Circle
 
 EvilCircle.prototype = Object.create(Shape.prototype);
 EvilCircle.prototype.constructor = EvilCircle;
+
+EvilCircle.prototype.draw = function() {
+  ctx.beginPath();
+  ctx.lineWidth = 3;
+  ctx.strokeStyle = this.color;
+  ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
+  ctx.stroke();
+}
+
+EvilCircle.prototype.checkBounds = function() {
+  if( (this.x + this.size) >= width ){
+    this.x -= this.size;
+  } 
+  if ( (this.x - this.size) <= 0){
+    this.x += this.size;
+  }
+  if ( (this.y + this.size) >= height ){
+    this.y -= this.size;
+  }
+  if ( (this.y - this.size) <= 0){
+    this.y += this.size;
+  }
+}
+
+EvilCircle.prototype.setControls = function() {
+  var _this = this;
+  window.onkeydown = function(e){
+    if (e.key == "a"){
+      _this.x -= _this.velX;
+    } else if (e.key == "d") {
+      _this.x += _this.velX;
+    } else if (e.key == "w") {
+      _this.y -= _this.velY;
+    } else if (e.key == "s") {
+      _this.y += _this.velY;
+    }
+  }
+}
+
+EvilCircle.prototype.collisionDetect = function() {
+  balls.forEach(ball => {
+    if (ball.exists) {
+      const dx = this.x - ball.x;
+      const dy = this.y - ball.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      if (distance < this.size + ball.size) {
+        ball.exists = false;
+        count--;
+        para.textContent = `Balls: ${count}`;
+      }
+    }
+  });
+}
+
+// Balls
 
 Ball.prototype.draw = function() {
   ctx.beginPath();
@@ -91,7 +152,7 @@ Ball.prototype.update = function() {
 
 Ball.prototype.collisionDetect = function() {
   balls.forEach(ball => {
-    if(ball != this){
+    if(ball != this && ball.exists){
       const dx = this.x - ball.x;
       const dy = this.y - ball.y;
       const distance = Math.sqrt(dx*dx + dy*dy); // removendo valores negativos - não existe distância negativa
@@ -113,7 +174,7 @@ Ball.prototype.collisionDetect = function() {
 
 let balls = [];
 
-while ( balls.length <= 25) {
+while (balls.length <= count) {
   let size = random(10, 20);
   let color = randomRGB();
 
@@ -129,15 +190,24 @@ while ( balls.length <= 25) {
   balls.push(ball);
 }
 
+let evil = new EvilCircle(random(0, width), random(0, height), true);
+evil.setControls();
+
 function loop() {
   ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
   ctx.fillRect(0, 0, width, height);
 
   balls.forEach(ball =>{
-    ball.update();
-    ball.collisionDetect();
-    ball.draw();
+    if (ball.exists){
+      ball.update();
+      ball.collisionDetect();
+      ball.draw();
+    }
   })
+
+  evil.checkBounds();
+  evil.collisionDetect();
+  evil.draw();
 
   requestAnimationFrame(loop);
 }
