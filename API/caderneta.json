@@ -1,0 +1,31 @@
+{
+    "contatos":[
+        {
+            "nome": "Huguinho",
+            "endereco": {
+                "rua": "Rua A",
+                "numero": "123",
+                "cep":"36000-001"
+            },
+            "telefone": "(32)1324-5678"
+        },
+        {
+            "nome": "Zezinho",
+            "endereco": {
+                "rua": "Rua B",
+                "numero": "456",
+                "cep":"36000-002"
+            },
+            "telefone": "(32)9876-6543"
+        },
+        {
+            "nome": "Luizinho",
+            "endereco": {
+                "rua": "Rua C",
+                "numero": "789",
+                "cep":"36000-003"
+            },
+            "telefone": "(32)6543-6543"
+        }
+    ]
+}
