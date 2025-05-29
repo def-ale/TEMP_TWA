@@ -2,9 +2,10 @@ const res = document.getElementById('res');
 const pokemon = document.getElementById("pokemon")
 const form = document.getElementById("form");
 const imgPokemon = document.getElementById("pokemon-img");
-const hab = document.getElementById("hab");
-const abDescription = document.getElementById("ab-description");
 const pokemonType = document.getElementById("type");
+const tipoMsg = document.getElementById("tipo-msg");
+const habMsg = document.getElementById("hab-msg");
+
 
 form.addEventListener('submit', (event)=>{
     event.preventDefault();
@@ -20,15 +21,29 @@ form.addEventListener('submit', (event)=>{
         }
     })
     .then(dados =>{
+        pokemonType.innerHTML = "";
+        hab.innerHTML = "";
+
         imgPokemon.src = dados.sprites.front_default;
-        imgPokemon.style = "display: show";
+        imgPokemon.classList.add("show");
         res.innerText = "Nome: " + dados.name;
-        hab.innerText = "Ability 1: " + dados.abilities[0].ability.name;
-        abDescription.innerText = "Ability 2: " + dados.abilities[1].ability.name;
-        pokemonType.innerHTML = "Type: " + dados.types[0].type.name;
+
+        dados.abilities.forEach(ability => {
+            console.log(ability);
+            hab.innerHTML += `<li> ${ability.ability.name} </li>`;
+        })
+        
+        
+        dados.types.forEach(tipo => {
+            console.log(tipo);
+            pokemonType.innerHTML += `<li> ${tipo.type.name} </li>`;
+        });
+        
+        tipoMsg.classList.add("show");
+        habMsg.classList.add("show");
+
     })
     .catch(()=>{
         res.innerText = "Erro do catch";
     })
 })
-

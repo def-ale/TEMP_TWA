@@ -1,0 +1,26 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    height: fit-content;
+}
+
+body p form {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.3em;
+}
+
+h1 {
+    font-size: 2em;
+}
+p {
+    font-size: 1.3em;
+}
+
+.hide {
+    display: none;
+}
+.show {
+    display: block;
+}
